@@ -1,0 +1,27 @@
+version: "2"
+services:
+  web:
+    image: odoodev:${ODOO_VERSION}
+    depends_on:
+      - db
+    ports:
+      - "${ODOO_PORT}:${ODOO_PORT}"
+      - "${DEBUGPY_PORT}:${DEBUGPY_PORT}"
+    volumes:
+      - ./conf:/etc/odoo
+      - odoo-web-data:/var/lib/odoo
+      - ${ODOO_SERVER}:/var/lib/odoo/odoo
+      - ${CUSTOM_ADDONS}:/var/lib/odoo/custom_addons
+    entrypoint: ${ENTRYPOINT}
+  db:
+    image: postgres:${PG_VERSION}
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_USER=${PG_USER}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+volumes:
+  odoo-web-data:
+  odoo-db-data:

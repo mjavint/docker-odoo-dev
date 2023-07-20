@@ -1,0 +1,8 @@
+{
+    "stubPath": "/path/odoo-stubs15",
+    "extraPaths": [
+        "/path/server/odoo",
+        "/path/server/odoo/addons",
+        "/path/custom_addons"
+    ]
+}
