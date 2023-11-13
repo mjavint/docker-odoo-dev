@@ -1,6 +1,6 @@
-version: "2"
 services:
   web:
+    container_name: ${ODOO_CONTAINER_NAME}
     image: odoodev:${ODOO_VERSION}
     depends_on:
       - db
@@ -14,12 +14,15 @@ services:
       - ${CUSTOM_ADDONS}:/var/lib/odoo/custom_addons
     entrypoint: ${ENTRYPOINT}
   db:
+    container_name: ${PG_CONTAINER_NAME}
     image: postgres:${PG_VERSION}
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=${PG_PASSWORD}
       - POSTGRES_USER=${PG_USER}
       - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - ${PG_PORT}:5432
     volumes:
       - odoo-db-data:/var/lib/postgresql/data/pgdata
 volumes:
