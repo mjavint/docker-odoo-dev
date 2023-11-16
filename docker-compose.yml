@@ -24,7 +24,7 @@ services:
     ports:
       - ${PG_PORT}:5432
     volumes:
-      - odoo-db-data:/var/lib/postgresql/data/pgdata
+      - pgdb-data:/var/lib/postgresql/data/pgdata
 volumes:
   odoo-web-data:
-  odoo-db-data:
+  pgdb-data:
