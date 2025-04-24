@@ -1,6 +1,6 @@
 FROM odoo:15.0
 
-USER odoo
+USER root
 
 
 COPY ./requirements.txt /requirements.txt
