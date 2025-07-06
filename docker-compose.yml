@@ -5,7 +5,7 @@ services:
     depends_on:
       - db
     ports:
-      - "${ODOO_PORT}:${ODOO_PORT}"
+      - "${ODOO_PORT}:8069"
       - "${DEBUGPY_PORT}:${DEBUGPY_PORT}"
     volumes:
       - ./conf:/etc/odoo
